@@ -12,8 +12,8 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen">
   <div class="max-w-5xl mx-auto p-3 sm:p-5">
-    <!-- Bovenbalk van prototype-omgeving -->
-    <div class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 mb-4 flex flex-wrap items-center justify-between gap-2 text-xs">
+    <!-- Bovenbalk van prototype-omgeving (standaard verborgen; 2x klikken/tikken op hero-foto toont/verbergt) -->
+    <div id="protoToolbar" class="hidden bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 mb-4 flex flex-wrap items-center justify-between gap-2 text-xs">
       <div class="flex items-center gap-2">
         <span class="px-2 py-0.5 rounded bg-slate-600 text-white font-bold">PROTOTYPE C · INTERACTIEF</span>
         <span class="text-slate-300">Originele mobiele look + werkende productpagina's, keuzehulp, winkelwagen &amp; kassa</span>
@@ -299,6 +299,18 @@
       render();
     }
 
+    let __lastHeroTap = 0;
+    function handleHeroPhotoTap(e) {
+      const now = Date.now();
+      if (now - __lastHeroTap < 450) {
+        __lastHeroTap = 0;
+        const bar = document.getElementById('protoToolbar');
+        if (bar) bar.classList.toggle('hidden');
+      } else {
+        __lastHeroTap = now;
+      }
+    }
+
     function toggleViewport() {
       state.desktop = !state.desktop;
       const f = document.getElementById('siteFrame');
@@ -376,7 +388,7 @@
             <div class="text-[13px] text-slate-800 leading-snug">Voel u veilig, thuis en onderweg</div>
           </div>
           <div class="col-span-6 relative min-h-[168px]">
-            <img src="${HERO_IMG}" alt="Personenalarmering" class="absolute inset-0 w-full h-full object-cover object-center hero-curve" />
+            <img src="${HERO_IMG}" alt="Personenalarmering" onclick="handleHeroPhotoTap(event)" class="absolute inset-0 w-full h-full object-cover object-center hero-curve cursor-pointer select-none" />
           </div>
         </div>
 
