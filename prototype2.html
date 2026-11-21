@@ -31,15 +31,22 @@
     <!-- Website Container -->
     <div class="flex justify-center">
       <div id="siteFrame" class="w-[375px] transition-all duration-200 bg-slate-50 text-slate-900 rounded-[26px] border-[8px] border-slate-800 shadow-2xl overflow-hidden">
-        <!-- Best-practice enkele trust-balk (klikbaar naar 20-reviews overlay) -->
-        <div class="bg-slate-50 border-b border-slate-200 px-3 py-2 flex items-center justify-between gap-2 text-xs text-slate-800">
-          <button type="button" onclick="__openReviewsModal()" title="Geverifieerd door WebwinkelKeur &amp; KiyOh · Bekijk 1.071 reviews" class="inline-flex items-center gap-1 cursor-pointer text-left">
-            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#e6007e"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="text-amber-400 tracking-tight">★★★★★</span>
-            <strong class="text-slate-900">8,9</strong>
-            <span class="text-[#3c838a] font-semibold underline decoration-[#3c838a]/60 underline-offset-2">1.071 reviews ›</span>
-          </button>
-          <span class="text-emerald-700 font-semibold text-[11px] whitespace-nowrap">✓ 30 dagen proberen</span>
+        <!-- Best-practice enkele trust-balk: WebwinkelKeur-knop -> live WWK iframe, sterren/reviews -> 20-reviews overlay -->
+        <div class="bg-slate-50 border-b border-slate-200 px-3 py-2 space-y-1 text-xs text-slate-800">
+          <div class="flex items-center justify-between gap-1.5 w-full">
+            <div class="inline-flex items-center gap-1.5">
+              <button type="button" onclick="__openWebwinkelKeurModal()" title="Bekijk officieel WebwinkelKeur-lidmaatschap van mijnSOS B.V." class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#e6007e] hover:bg-[#c8006d] text-white text-[10px] font-bold shadow-sm shrink-0 cursor-pointer transition-colors">
+                <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#ffffff" stroke-width="2.2"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>WebwinkelKeur</span>
+              </button>
+              <button type="button" onclick="__openReviewsModal()" title="Bekijk 1.071 klantbeoordelingen van mijnSOS" class="inline-flex items-center gap-1 cursor-pointer">
+                <span class="text-amber-400 tracking-tight">★★★★★</span>
+                <strong class="text-slate-900">8,9</strong>
+              </button>
+            </div>
+            <button type="button" onclick="__openReviewsModal()" title="Bekijk 1.071 klantbeoordelingen van mijnSOS" class="text-[#3c838a] font-semibold underline decoration-[#3c838a]/60 underline-offset-2 whitespace-nowrap cursor-pointer">1.071 reviews ›</button>
+          </div>
+          <div class="text-center text-[11px] font-semibold text-emerald-700 leading-tight">✓ Binnen 30 dagen niet goed? Geld terug</div>
         </div>
 
         <!-- Main Header -->
@@ -343,11 +350,11 @@
         <section class="bg-white rounded-xl border border-slate-200 p-3 space-y-2.5 shadow-sm">
           <div class="flex items-center justify-between">
             <span class="text-xs font-extrabold text-slate-900">Wat mantelzorgers zeggen</span>
-            <span class="text-xs font-bold text-amber-600">★★★★★ 8,9</span>
+            <button type="button" onclick="__openReviewsModal()" class="text-xs font-bold text-[#3c838a] hover:underline cursor-pointer"><span class="text-amber-500">★★★★★</span> 8,9 · 1.071 reviews ›</button>
           </div>
           <blockquote class="text-[11px] text-slate-700 italic leading-relaxed border-l-2 border-teal-600 pl-2.5">
             “Gekocht voor mijn moeder van 84. Binnen een dag kant-en-klaar binnen, we hoefden niets in te stellen. Dat geeft ons hele gezin enorm veel rust.”
-            <span class="block not-italic text-[10px] text-slate-500 mt-0.5">— Marieke · geverifieerde klant (WebwinkelKeur)</span>
+            <span class="flex flex-wrap items-center gap-1.5 not-italic text-[10px] text-slate-500 mt-1"><span>— Marieke · geverifieerde klant</span> <button type="button" onclick="__openWebwinkelKeurModal()" class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-[#e6007e] hover:bg-[#c8006d] text-white text-[9px] font-bold cursor-pointer">✓ WebwinkelKeur</button></span>
           </blockquote>
           <div class="bg-slate-50 rounded-lg p-2.5 border border-slate-200 flex items-center justify-between gap-2">
             <div>
@@ -827,6 +834,10 @@
         <button onclick="alert('Bestelling geplaatst: ' + state.cart.name + ' (€ ' + state.cart.price + ')')" class="w-full py-3 rounded-xl bg-[#1f8b4c] hover:bg-[#19753f] text-white font-bold text-sm shadow-md cursor-pointer">
           Bestelling plaatsen · € ${c.price.toFixed(2).replace('.', ',')}
         </button>
+        <div class="flex items-center justify-center gap-2 text-[11px] text-slate-600 pt-1">
+          <button type="button" onclick="__openWebwinkelKeurModal()" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#e6007e] hover:bg-[#c8006d] text-white text-[10px] font-bold cursor-pointer">✓ WebwinkelKeur</button>
+          <button type="button" onclick="__openReviewsModal()" class="text-[#3c838a] font-semibold underline cursor-pointer">★★★★★ 8,9 (1.071 reviews)</button>
+        </div>
       `;
     }
 
@@ -845,6 +856,75 @@
     render();
     syncNavUI();
   </script>
+
+<!-- WEBWINKELKEUR IFRAME OVERLAY (LIVE KEURMERK-PAGINA, KLANT BLIJFT OP MIJNSOS.NL) -->
+<div id="__wwkModal" onclick="if(event.target===this)__closeWebwinkelKeurModal()" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-[2px] flex items-end sm:items-center justify-center sm:p-4">
+  <div class="bg-white text-slate-900 w-full sm:max-w-2xl h-[90vh] sm:h-[85vh] rounded-t-2xl sm:rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
+    <!-- Sticky bovenbalk in WebwinkelKeur-stijl -->
+    <div class="bg-[#e6007e] text-white px-4 py-3 flex items-center justify-between gap-2 shrink-0">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#ffffff" stroke-width="2.2"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="truncate">
+          <div class="text-sm font-extrabold leading-tight">WebwinkelKeur · mijnSOS B.V.</div>
+          <div class="text-[11px] text-pink-100 leading-tight">Officieel gecertificeerde webshop · u blijft op mijnSOS.nl</div>
+        </div>
+      </div>
+      <button type="button" onclick="__closeWebwinkelKeurModal()" aria-label="Sluit WebwinkelKeur" class="px-3 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shrink-0">
+        <span>Sluiten</span>
+        <span class="text-base leading-none">✕</span>
+      </button>
+    </div>
+
+    <!-- Live WebwinkelKeur pagina in iframe (lazy loaded) -->
+    <div class="relative flex-1 min-h-0 bg-slate-50">
+      <div id="__wwkLoading" class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-slate-500 text-xs pointer-events-none">
+        <div class="w-6 h-6 border-2 border-[#e6007e] border-t-transparent rounded-full animate-spin"></div>
+        <div>WebwinkelKeur-profiel van mijnSOS laden...</div>
+      </div>
+      <iframe id="__wwkIframe" title="WebwinkelKeur certificaat mijnSOS B.V." class="relative z-10 w-full h-full border-0 bg-white" onload="document.getElementById('__wwkLoading').classList.add('hidden')"></iframe>
+    </div>
+
+    <!-- Sticky onderbalk: grote terugknop + optie nieuw tabblad -->
+    <div class="bg-white border-t border-slate-200 px-4 py-3 flex items-center justify-between gap-3 shrink-0">
+      <button type="button" onclick="__closeWebwinkelKeurModal()" class="flex-1 py-2.5 px-4 rounded-xl bg-[#4b959a] hover:bg-[#3c838a] text-white text-sm font-bold shadow cursor-pointer">
+        ← Terug naar mijnSOS.nl
+      </button>
+      <a href="https://www.webwinkelkeur.nl/webshop/mijnSOS-B-V-_1222470" target="_blank" rel="noopener noreferrer" class="text-[11px] text-slate-500 hover:text-slate-800 underline whitespace-nowrap">
+        Nieuw tabblad ↗
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  const WWK_URL = 'https://www.webwinkelkeur.nl/webshop/mijnSOS-B-V-_1222470';
+  window.__openWebwinkelKeurModal = function() {
+    const modal = document.getElementById('__wwkModal');
+    const iframe = document.getElementById('__wwkIframe');
+    const loading = document.getElementById('__wwkLoading');
+    if (!modal || !iframe) return;
+    if (!iframe.src) {
+      if (loading) loading.classList.remove('hidden');
+      iframe.src = WWK_URL;
+    }
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  };
+  window.__closeWebwinkelKeurModal = function() {
+    const modal = document.getElementById('__wwkModal');
+    if (modal) modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('__wwkModal');
+      if (modal && !modal.classList.contains('hidden')) window.__closeWebwinkelKeurModal();
+    }
+  });
+})();
+</script>
 
 <!-- REVIEWS IFRAME OVERLAY (BEST PRACTICE: DIRECT REVIEWS ZICHTBAAR + LIVE KIYOH TAB) -->
 <div id="__reviewsModal" onclick="if(event.target===this)__closeReviewsModal()" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-[2px] flex items-end sm:items-center justify-center sm:p-4">
